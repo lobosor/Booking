@@ -1,6 +1,8 @@
 <?php
 	
-	//Update
+	//*****************************UPDATE DATA*****************************//
+	
+	//----> Update DESTINATION
 	if(isset($_POST['destination']) && $_POST['destination']!="")
 	{
 		$myBooking->setDestination($_POST['destination']);
@@ -10,27 +12,17 @@
 		$error['destination'] = 1;
 	}
 	
+	//----> Update NUMBER OF PASSENGERS
 	if(isset($_POST['numberOfPassengers']) && $_POST['numberOfPassengers']>0 && $_POST['numberOfPassengers'] < 300)
-	{		
-		//Need further tests
-		for($i =0; $i <$_POST['numberOfPassengers']; $i++)
-		{
-			if($myBooking->getPassenger($i)=== null)
-			{
-				$myBooking->addPerson(new Person("",0));
-			}			
-		}
-		
-		while($myBooking->getNumberOfPassengers() > $_POST['numberOfPassengers'])
-		{
-			$myBooking->removePerson();
-		}
+	{	
+		$myBooking->setNumberOfPassengers($_POST['numberOfPassengers']);
 	}
 	else if ($myBooking->getNumberOfPassengers() == 0)
 	{
 		$error['numberPeople'] = 1;
 	}
 	
+	//----> Update INSURANCE
 	if(isset($_POST['insurance']))
 	{
 		$myBooking->setInsurance(1);
@@ -40,7 +32,7 @@
 		$myBooking->setInsurance(0);
 	}
 	
-	//Set the number of passengers when editing data
+	//----> Set the number of REGISTERED PASSENGERS when returning to this view
 	$myBooking->setRegisteredPassengers(0);
 	
 	//Display

@@ -23,7 +23,7 @@
 						$nameProperty = new Property("value", $myBooking->getPassenger($i)->getName());
 						$ageProperty = new Property("value", $myBooking->getPassenger($i)->getAge());
 						
-						echo '<p>Passenger '.($i+1).':</p></br>';
+						echo '<p>Passenger '.($i+1).':</p>';
 						
 						echo new Input("name", "text", "Name :", $nameProperty);
 						echo new Input("age", "number", "Age :", $ageProperty);

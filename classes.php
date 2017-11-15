@@ -133,6 +133,22 @@
 			return $this->numberOfPassengers;
 		}
 		
+		public function setNumberOfPassengers($number)
+		{
+			for($i =0; $i <$number; $i++)
+			{
+				if(!isset($this->passengers[$i]))
+				{
+					$this->addPerson(new Person("",0));
+				}			
+			}
+			
+			while($this->numberOfPassengers > $number)
+			{
+				$this->removePerson();
+			}
+		}
+		
 		public function getPassenger($index)
 		{
 			if(isset($this->passengers[$index]))
