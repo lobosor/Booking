@@ -28,7 +28,7 @@
 	
 	if(!isset($pageLoaded))
 	{
-		require 'controller/c_step1.php';
+		require 'controller/c_init.php';
 	}
 	
 	$_SESSION['booking'] = serialize($myBooking);

@@ -90,13 +90,15 @@
 		private $destination;
 		private $insurance;
 		private $numberOfPassengers;
+		private $registeredPassengers;
 		private $passengers = array();
 		
 		public function __construct()
 		{
 			$this->destination = "";
-			$this->numberOfPassengers= 0;
-			$this->insurance= 0;
+			$this->numberOfPassengers = 0;
+			$this->insurance = 0;
+			$this->registeredPassengers = 0;
 		}
 		
 		public function getDestination()
@@ -129,6 +131,22 @@
 		public function getNumberOfPassengers()
 		{
 			return $this->numberOfPassengers;
+		}
+		
+		public function setNumberOfPassengers($number)
+		{
+			for($i =0; $i <$number; $i++)
+			{
+				if(!isset($this->passengers[$i]))
+				{
+					$this->addPerson(new Person("",0));
+				}			
+			}
+			
+			while($this->numberOfPassengers > $number)
+			{
+				$this->removePerson();
+			}
 		}
 		
 		public function getPassenger($index)
@@ -190,6 +208,26 @@
 			$this->numberOfPassengers= 0;
 			$this->insurance= 0;
 			$this->passengers = array ();
+		}
+		
+		public function getRegisteredPassengers()
+		{
+			return $this->registeredPassengers;
+		}
+		
+		public function setRegisteredPassengers($number)
+		{
+			$this->registeredPassengers = $number;
+		}
+		
+		public function addRegisteredPassenger()
+		{
+			$this->registeredPassengers += 1;
+		}
+		
+		public function allPassengersRegistered()
+		{
+			return $this->registeredPassengers == $this->numberOfPassengers;
 		}
 	}
 
