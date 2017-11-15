@@ -1,37 +1,38 @@
 <?php
 	
 	//Update
-	for($i=0; $i<$myBooking->getNumberOfPassengers(); $i++)
-	{
-		if(isset($_POST['name'.$i]) && $_POST['name'.$i]!="")
+		$i = $myBooking->getRegisteredPassengers();
+		
+		if(isset($_POST['name']) && $_POST['name']!="")
 		{
-			$myBooking->getPassenger($i)->setName($_POST['name'.$i]);
+			$myBooking->getPassenger($i)->setName($_POST['name']);
 		}
-		else if($_POST['name'.$i] == "")
+		else if($_POST['name'] == "")
 		{
 			$error['name'] = 1;
 		}
 		
-		if(isset($_POST['age'.$i]) && $_POST['age'.$i] > 0 && $_POST['age'.$i] <= 130)
+		if(isset($_POST['age']) && $_POST['age'] > 0 && $_POST['age'] <= 130)
 		{
-			$myBooking->getPassenger($i)->setAge($_POST['age'.$i]);
+			$myBooking->getPassenger($i)->setAge($_POST['age']);
 		}
-		else if($_POST['age'.$i] <= 0)
+		else if($_POST['age'] <= 0)
 		{
 			$error['age'] = 1;
 		}
-		
-		
+	
+	if(!isset($error))
+	{
+		$myBooking->addRegisteredPassenger();
 	}
 	
-	//Display
-	if(isset($error))
-	{		
-		require 'view/v_passengers.php';
+	if($myBooking->allPassengersRegistered())
+	{
+		require 'view/v_confirm.php';
 	}
 	else
 	{
-		require 'view/v_confirm.php';
+		require 'view/v_passengers.php';
 	}
 	
 ?>

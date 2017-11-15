@@ -40,6 +40,9 @@
 		$myBooking->setInsurance(0);
 	}
 	
+	//Set the number of passengers when editing data
+	$myBooking->setRegisteredPassengers(0);
+	
 	//Display
 	if(isset($error))
 	{

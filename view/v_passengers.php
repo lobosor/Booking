@@ -18,16 +18,16 @@
 		
 			<p>
 				<?php
-					
-					for($i = 0; $i<$myBooking->getNumberOfPassengers();$i++)
-					{
+						$i = $myBooking->getRegisteredPassengers();
+						
 						$nameProperty = new Property("value", $myBooking->getPassenger($i)->getName());
 						$ageProperty = new Property("value", $myBooking->getPassenger($i)->getAge());
 						
-						echo new Input("name".$i, "text", "Name :", $nameProperty);
-						echo new Input("age".$i, "number", "Age :", $ageProperty);
-						echo '<br />';
-					}					
+						echo '<p>Passenger '.($i+1).':</p></br>';
+						
+						echo new Input("name", "text", "Name :", $nameProperty);
+						echo new Input("age", "number", "Age :", $ageProperty);
+						echo '<br />';					
 					
 				?>		
 			</p>
